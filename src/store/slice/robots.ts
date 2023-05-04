@@ -7,7 +7,24 @@ export interface RobotState {
 }
 
 const initialState: RobotState = {
-  robots: [],
+  robots: [
+    {
+      id: '1234',
+      name: 'Wall-E',
+    },
+    {
+      id: '1235',
+      name: 'Gundam',
+    },
+    {
+      id: '1236',
+      name: 'Daimos',
+    },
+    {
+      id: '1237',
+      name: 'Voltes-V',
+    },
+  ],
 };
 
 export const RobotSlice = createSlice({
