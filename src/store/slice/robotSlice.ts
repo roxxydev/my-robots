@@ -3,30 +3,15 @@ import {createSlice} from '@reduxjs/toolkit';
 import Robot from '../../models/robot';
 import {RootState} from '../store';
 import {v4 as uuid} from 'uuid';
+import {createAvatar} from '@dicebear/core';
+import {bottts} from '@dicebear/collection';
 
 export interface RobotState {
   robots: Robot[];
 }
 
 const initialState: RobotState = {
-  robots: [
-    {
-      id: '1234',
-      name: 'Wall-E',
-    },
-    {
-      id: '1235',
-      name: 'Gundam',
-    },
-    {
-      id: '1236',
-      name: 'Daimos',
-    },
-    {
-      id: '1237',
-      name: 'Voltes-V',
-    },
-  ],
+  robots: [],
 };
 
 export const RobotSlice = createSlice({
@@ -34,9 +19,15 @@ export const RobotSlice = createSlice({
   initialState,
   reducers: {
     addRobot: (state, action) => {
+      const robotId = uuid();
+      const avatar = createAvatar(bottts, {
+        seed: robotId,
+      });
+      const dataUri = avatar.toDataUriSync();
       state.robots.push({
-        id: uuid(),
+        id: robotId,
         name: action.payload.name,
+        avatar: dataUri,
       });
     },
     deleteRobot: (state, action) => {

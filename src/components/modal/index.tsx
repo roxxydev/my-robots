@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {Modal, View} from 'react-native';
-import RobotAddEdit from '../RobotAdd';
+import RobotAddEdit from '../RobotAddEdit';
 import Robot from '../../models/robot';
 import styles from './styles';
 import {useAppDispatch, useAppSelector} from '../../store/hooks';

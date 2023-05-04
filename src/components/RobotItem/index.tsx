@@ -1,8 +1,9 @@
 import React from 'react';
 import {View, Text, Button} from 'react-native';
+import {Svg, SvgUri} from 'react-native-svg';
 import styles from './styles';
-import {useAppDispatch} from '../../store/hooks';
 import Robot from '../../models/robot';
+import {useAppDispatch} from '../../store/hooks';
 import {deleteRobot} from '../../store/slice/robotSlice';
 import {editRobotModal} from '../../store/slice/modalSlice';
 
@@ -15,6 +16,7 @@ const RobotItem = ({item}: RobotItemProps) => {
 
   return (
     <View style={styles.itemContainer}>
+      <SvgUri width="100%" height="100%" uri={item.avatar} />
       <Text>{item.id}</Text>
       <Text>{item.name}</Text>
       <Button title="Edit" onPress={() => dispatch(editRobotModal(item))} />
