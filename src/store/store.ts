@@ -1,9 +1,11 @@
 import {configureStore} from '@reduxjs/toolkit';
-import robotsReducer from './slice/robots';
+import robotsReducer from './slice/robotSlice';
+import modalReducer from './slice/modalSlice';
 
 const store = configureStore({
   reducer: {
     robot: robotsReducer,
+    modal: modalReducer,
   },
 });
 

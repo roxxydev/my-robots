@@ -3,7 +3,8 @@ import {View, Text, Button} from 'react-native';
 import styles from './styles';
 import {useAppDispatch} from '../../store/hooks';
 import Robot from '../../models/robot';
-import {deleteRobot} from '../../store/slice/robots';
+import {deleteRobot} from '../../store/slice/robotSlice';
+import {editRobotModal} from '../../store/slice/modalSlice';
 
 interface RobotItemProps {
   item: Robot;
@@ -16,6 +17,7 @@ const RobotItem = ({item}: RobotItemProps) => {
     <View style={styles.itemContainer}>
       <Text>{item.id}</Text>
       <Text>{item.name}</Text>
+      <Button title="Edit" onPress={() => dispatch(editRobotModal(item))} />
       <Button
         title="Remove"
         onPress={() => dispatch(deleteRobot({id: item.id}))}

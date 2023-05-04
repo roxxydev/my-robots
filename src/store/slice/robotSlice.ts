@@ -1,6 +1,8 @@
+import 'react-native-get-random-values';
 import {createSlice} from '@reduxjs/toolkit';
 import Robot from '../../models/robot';
 import {RootState} from '../store';
+import {v4 as uuid} from 'uuid';
 
 export interface RobotState {
   robots: Robot[];
@@ -32,7 +34,10 @@ export const RobotSlice = createSlice({
   initialState,
   reducers: {
     addRobot: (state, action) => {
-      state.robots.push(action.payload);
+      state.robots.push({
+        id: uuid(),
+        name: action.payload.name,
+      });
     },
     deleteRobot: (state, action) => {
       state.robots = state.robots.filter(

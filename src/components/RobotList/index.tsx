@@ -2,7 +2,7 @@ import React from 'react';
 import {View, FlatList} from 'react-native';
 import styles from './styles';
 import {useAppSelector} from '../../store/hooks';
-import {selectRobot} from '../../store/slice/robots';
+import {selectRobot} from '../../store/slice/robotSlice';
 import RobotItem from '../RobotItem';
 
 const RobotList = () => {
