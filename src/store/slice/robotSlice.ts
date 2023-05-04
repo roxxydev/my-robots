@@ -8,10 +8,12 @@ import {bottts} from '@dicebear/collection';
 
 export interface RobotState {
   robots: Robot[];
+  robot?: Robot;
 }
 
 const initialState: RobotState = {
   robots: [],
+  robot: undefined,
 };
 
 export const RobotSlice = createSlice({
@@ -31,20 +33,27 @@ export const RobotSlice = createSlice({
       });
     },
     deleteRobot: (state, action) => {
+      state.robot = undefined;
       state.robots = state.robots.filter(
         (robot: Robot) => robot.id !== action.payload.id,
       );
     },
     updateRobotName: (state, action) => {
+      state.robot = undefined;
       state.robots.map((robot: Robot) => {
         if (robot.id === action.payload.id) {
           robot.name = action.payload.name;
+          state.robot = robot;
         }
       });
+    },
+    viewRobot: (state, action) => {
+      state.robot = action.payload;
     },
   },
 });
 
-export const {addRobot, deleteRobot, updateRobotName} = RobotSlice.actions;
-export const selectRobot = (state: RootState) => state.robot.robots;
+export const {addRobot, deleteRobot, updateRobotName, viewRobot} =
+  RobotSlice.actions;
+export const selectRobot = (state: RootState) => state.robot;
 export default RobotSlice.reducer;
